@@ -61,12 +61,13 @@ class PreviewActivity : AppCompatActivity() {
     }
 
     private fun startCamera() {
-        val cameraproviderFuture = ProcessCameraProvider.getInstance(this)//列表
+        val cameraproviderFuture = ProcessCameraProvider.getInstance(this)//可监听任务
         cameraproviderFuture.addListener(Runnable {
             //此实例用于将相机的生命周期绑定到生命周期所有者
             //由于 CameraX 具有生命周期感知能力，所以这样可以省去打开和关闭相机的任务。
             val cameraProvider: ProcessCameraProvider = cameraproviderFuture.get()
             //预览
+            //Preview，一个CameraX定义的 UseCase。Preview本身也 继承了 UserCase
             val preview = Preview.Builder()
                 .build()
                 .also {
